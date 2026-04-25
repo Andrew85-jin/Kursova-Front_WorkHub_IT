@@ -8,20 +8,22 @@
   </div>
 </section>
 
-<section class="jobs">
-  <div class="container">
-    <h2>Свіжі вакансії</h2>
+<div class="jobs-container">
+  <section class="jobs">
+    <div class="container">
+      <h2>Свіжі вакансії</h2>
 
-    <div class="jobs-list">
-      @for (job of jobs; track job.title) {
-        <app-job-card
-          [title]="job.title"
-          [company]="job.company"
-          [salary]="job.salary"
-          [location]="job.location"
-          [experience]="job.experience">
-        </app-job-card>
-      }
+      <div class="jobs-list">
+        @for (job of jobs; track job.title) {
+          <app-job-card
+            [title]="job.title"
+            [company]="job.company"
+            [salary]="job.salary"
+            [location]="job.location"
+            [experience]="job.experience">
+          </app-job-card>
+        }
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
