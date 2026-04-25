@@ -1,8 +1,8 @@
-<app-search-bar></app-search-bar>
+<app-search-bar (searchChange)="onSearch($event)"></app-search-bar>
 
 <section class="categories">
   <div class="container">
-    <h2>Популярні категорії</h2>
+    <h2>Категорії</h2>
 
     <app-category-card></app-category-card>
   </div>
@@ -11,10 +11,10 @@
 <div class="jobs-container">
   <section class="jobs">
     <div class="container">
-      <h2>Свіжі вакансії</h2>
+      <h2>Вакансії</h2>
 
       <div class="jobs-list">
-        @for (job of jobs; track job.title) {
+        @for (job of filterJobs; track job.title) {
           <app-job-card
             [title]="job.title"
             [company]="job.company"
@@ -25,5 +25,10 @@
         }
       </div>
     </div>
+    <div class="jobs-footer">
+      <button class="btn-more">Більше вакансій</button>
+    </div>
   </section>
+
+
 </div>

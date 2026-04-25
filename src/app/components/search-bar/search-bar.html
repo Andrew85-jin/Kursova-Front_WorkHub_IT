@@ -4,9 +4,20 @@
     <p>Тисячі актуальних вакансій</p>
 
     <div class="search-box">
-      <input type="text" placeholder="Посада або компанія">
-      <input type="text" placeholder="Місто">
-      <button>Шукати</button>
+      <input
+        type="text"
+        placeholder="Посада або компанія"
+        [(ngModel)]="searchValue"
+        (keyup.enter)="onSearch()"
+      />
+
+      <input
+        type="text"
+        placeholder="Місто"
+        [(ngModel)]="cityValue"
+        (keyup.enter)="onSearch()"
+      />
+      <button (click)="onSearch()">Шукати</button>
     </div>
   </div>
 </div>

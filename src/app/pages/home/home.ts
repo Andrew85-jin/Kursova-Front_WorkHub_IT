@@ -12,25 +12,38 @@ import { SearchBar } from '../../components/search-bar/search-bar';
 export class Home {
   jobs = [
     {
-      title: 'Frontend Developer (React)',
+      title: 'Frontend Developer',
       company: 'TechnoHub',
-      salary: '$3000-4500',
+      salary: '$3000',
       location: 'Київ',
       experience: '3+ роки',
     },
     {
       title: 'UI/UX Designer',
       company: 'DesignPro',
-      salary: '$1500-2500',
+      salary: '$1500',
       location: 'Одеса',
       experience: '2+ роки',
     },
     {
-      title: 'Менеджер з продажу',
+      title: 'Менеджер',
       company: 'MegaCommerce',
-      salary: '25 000-40 000 грн',
+      salary: '30000 грн',
       location: 'Львів',
       experience: '1+ рік',
     },
   ];
+
+  filterJobs = [...this.jobs];
+
+  onSearch(query: { text: string; city: string }) {
+    const text = query.text.toLowerCase();
+    const city = query.city.toLowerCase();
+
+    this.filterJobs = this.jobs.filter(
+      (job) =>
+        (job.title.toLowerCase().includes(text) || job.company.toLowerCase().includes(text)) &&
+        job.location.toLowerCase().includes(city),
+    );
+  }
 }
