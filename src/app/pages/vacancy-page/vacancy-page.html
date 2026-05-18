@@ -1,0 +1,66 @@
+<section class="vacancy-page">
+
+  <div class="container">
+
+    <div class="vacancy-header">
+
+      <div>
+
+        <h1>{{ job?.title }}</h1>
+
+        <div class="company">
+          {{ job?.company }}
+        </div>
+
+        <div class="meta">
+          <span>{{ job?.location }}</span>
+          <span>{{ job?.experience }}</span>
+        </div>
+
+      </div>
+
+      <div class="salary">
+        {{ job?.salary }}
+      </div>
+
+    </div>
+
+    <div class="vacancy-content">
+
+      <div class="main-info">
+
+        <h2>Опис вакансії</h2>
+
+        <p>
+          {{ job?.description }}
+        </p>
+
+        <h2>Навички</h2>
+
+        <div class="skills">
+
+          @for (skill of job?.skills; track skill) {
+
+            <span class="skill">
+              {{ skill }}
+            </span>
+
+          }
+
+        </div>
+
+      </div>
+
+      <div class="sidebar">
+
+        <button class="apply-btn">
+          Відгукнутися
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

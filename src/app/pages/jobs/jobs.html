@@ -1,0 +1,35 @@
+<section class="jobs-page">
+  <app-search-bar
+    (searchChange)="onSearch($event)">
+  </app-search-bar>
+  <div class="jobs-layout">
+
+    <app-filters-sidebar
+      (filtersChange)="applyFilters($event)">
+    </app-filters-sidebar>
+
+    <div class="jobs-content">
+
+      <div class="jobs-list">
+
+        @for (job of filteredJobs; track job.id) {
+
+          <app-job-card
+            [id]="job.id"
+            [title]="job.title"
+            [company]="job.company"
+            [salary]="job.salary"
+            [location]="job.location"
+            [experience]="job.experience">
+          </app-job-card>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+

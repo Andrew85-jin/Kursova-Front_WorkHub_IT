@@ -1,0 +1,97 @@
+.vacancy-page {
+  padding: 50px 0;
+}
+
+.vacancy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.company {
+  font-size: 22px;
+  color: #6b7280;
+
+  margin-bottom: 15px;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+
+  color: #6b7280;
+}
+
+.salary {
+  font-size: 30px;
+  font-weight: bold;
+
+  color: #1a56db;
+}
+
+.vacancy-content {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  gap: 40px;
+}
+
+.main-info {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 16px;
+}
+
+.skills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
+
+.skill {
+  padding: 8px 14px;
+
+  background: #eff6ff;
+
+  border-radius: 8px;
+}
+
+.sidebar {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  height: fit-content;
+}
+
+.apply-btn {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #1a56db;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}

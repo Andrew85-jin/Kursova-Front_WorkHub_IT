@@ -7,7 +7,7 @@
 .header-top {
   background: #1a56db;
   color: #fff;
-  font-size: 13px;
+  font-size: 16px;
   padding: 8px 0;
 }
 
@@ -36,9 +36,16 @@
 
 /* LOGO */
 .logo {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 700;
   color: #1a56db;
+
+}
+
+.logo a {
+  text-decoration: none;
+  color: #1a56db;
+
 }
 
 .logo span {
@@ -50,6 +57,7 @@
   display: flex;
   gap: 24px;
   list-style: none;
+  font-size: 20px;
 }
 
 .nav-links a {
@@ -73,6 +81,7 @@
   border-radius: 6px;
   cursor: pointer;
   border: none;
+  font-size: 20px;
 }
 
 .btn-outline {

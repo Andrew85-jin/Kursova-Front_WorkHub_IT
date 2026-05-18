@@ -2,20 +2,34 @@
 
 <section class="categories">
   <div class="container">
-    <h2>Категорії</h2>
+    <h2 class="category">Категорії</h2>
 
-    <app-category-card></app-category-card>
+    <div class="category-list">
+      @for (category of categories; track category.title){
+        <app-category-card
+          [icon]="category.icon"
+          [title]="category.title"
+          [vacancies]="category.vacancies">
+        </app-category-card>
+      }
+    </div>
+
+  </div>
+
+  <div class="btn-container">
+    <a routerLink="/categories" class="btn-more">Всі категорії</a>
   </div>
 </section>
 
 <div class="jobs-container">
   <section class="jobs">
     <div class="container">
-      <h2>Вакансії</h2>
+      <h2 class="Vacancy">Вакансії</h2>
 
       <div class="jobs-list">
-        @for (job of filterJobs; track job.title) {
+        @for (job of filterJobs; track job.id) {
           <app-job-card
+            [id]="job.id"
             [title]="job.title"
             [company]="job.company"
             [salary]="job.salary"
@@ -26,9 +40,7 @@
       </div>
     </div>
     <div class="jobs-footer">
-      <button class="btn-more">Більше вакансій</button>
+      <a routerLink="/jobs" class="btn-more">Більше вакансій</a>
     </div>
   </section>
-
-
 </div>

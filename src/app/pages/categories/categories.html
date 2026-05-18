@@ -1,0 +1,20 @@
+<section class="categories-page">
+
+  <div class="container">
+
+    <h1>Всі категорії</h1>
+
+    <div class="categories-grid">
+
+      @for (category of categories; track category.title) {
+        <app-category-card
+          [title]="category.title"
+          [vacancies]="category.vacancies"
+          [icon]="category.icon">
+        </app-category-card>
+      }
+    </div>
+
+  </div>
+
+</section>
