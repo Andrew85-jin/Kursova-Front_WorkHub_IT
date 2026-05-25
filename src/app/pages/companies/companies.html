@@ -1,0 +1,26 @@
+<section class="companies-page">
+
+  <div class="container">
+
+    <h1>Компанії</h1>
+
+    <div class="companies-list">
+
+      @for (company of companies; track company.id) {
+
+        <app-company-card
+          [id]="company.id"
+          [name]="company.name"
+          [location]="company.location"
+          [employees]="company.employees"
+          [description]="company.description"
+          [logo]="company.logo">
+        </app-company-card>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

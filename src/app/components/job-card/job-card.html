@@ -15,4 +15,21 @@
     {{ salary }}
   </div>
 
+  <div class="tags-container">
+    <div class="skills">
+      @for (skill of skills; track skill){
+        <span class="skill">
+        {{skill}}
+      </span>
+      }
+    </div>
+    <div class="tags">
+      @for (tag of tags; track tag){
+        <span class="tag">
+        {{tag}}
+      </span>
+      }
+    </div>
+  </div>
+
 </a>

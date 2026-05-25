@@ -1,4 +1,7 @@
-<header class="header">
+<script src="header.ts"></script>
+<header class="header"
+        [class.hidden]="!isVisible"
+        [class.home-page]="isHomePage">
   <div class="header-top">
     <div class="container">
       <div>📍 Україна</div>
@@ -13,14 +16,14 @@
     <div class="container nav-content">
 
       <div class="logo">
-       <a href="/"> Work<span>Hub</span></a>
+        <a href="/"> Work<span>Hub IT</span></a>
       </div>
 
       <ul class="nav-links">
         <li><a href="/jobs">Вакансії</a></li>
-        <li><a href="#">Компанії</a></li>
+        <li><a href="/companies">Компанії</a></li>
         <li><a href="#">Резюме</a></li>
-        <li><a href="#">Кар'єра</a></li>
+        <li><a href="#">Про нас</a></li>
       </ul>
 
       <div class="auth-buttons">

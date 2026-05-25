@@ -1,0 +1,20 @@
+.companies-page {
+  padding: 40px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 30px;
+
+  font-size: 40px;
+}
+
+.companies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

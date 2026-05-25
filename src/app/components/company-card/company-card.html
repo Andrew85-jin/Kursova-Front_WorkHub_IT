@@ -1,0 +1,20 @@
+<a [routerLink]="['/companies', id]" class="company-card">
+
+  <div class="company-logo">
+    {{ logo }}
+  </div>
+
+  <div class="company-info">
+
+    <h3>{{ name }}</h3>
+
+    <p>{{ description }}</p>
+
+    <div class="company-meta">
+      <span>{{ location }}</span>
+      <span>{{ employees }} працівників</span>
+    </div>
+
+  </div>
+
+</a>

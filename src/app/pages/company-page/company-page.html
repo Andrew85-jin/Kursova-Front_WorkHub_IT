@@ -1,0 +1,64 @@
+<section class="company-page">
+
+  <div class="container">
+
+    @if (company) {
+
+      <div class="company-header">
+
+        <div class="company-logo">
+          {{ company.logo }}
+        </div>
+
+        <div class="company-info">
+
+          <h1>{{ company.name }}</h1>
+
+          <p>{{ company.description }}</p>
+
+          <div class="company-meta">
+
+            <span>{{ company.location }}</span>
+
+            <span>
+              {{ company.employees }} працівників
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="company-jobs">
+
+        <h2>
+          Вакансії компанії
+        </h2>
+
+        <div class="jobs-list">
+
+          @for (job of companyJobs; track job.id) {
+
+            <app-job-card
+              [id]="job.id"
+              [title]="job.title"
+              [company]="job.company"
+              [salary]="job.salary"
+              [location]="job.location"
+              [experience]="job.experience"
+              [skills]="job.skills"
+              [tags]="job.tags">
+            </app-job-card>
+
+          }
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</section>

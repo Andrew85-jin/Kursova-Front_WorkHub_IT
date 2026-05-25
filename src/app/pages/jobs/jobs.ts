@@ -28,11 +28,28 @@ export class Jobs {
   }
   applyFilters(filters: any) {
     this.filteredJobs = this.jobs.filter((job) => {
-      const matchesSearch = job.title.toLowerCase().includes(filters.search.toLowerCase());
+      if (filters.search) {
+        const search = filters.search.toLowerCase();
+        const hasTitle = job.title.toLowerCase().includes(search);
+        const hasCompany = job.company.toLowerCase().includes(search);
+        if (!hasTitle && !hasCompany) return false;
+      }
 
-      const matchesCity = job.location.toLowerCase().includes(filters.city.toLowerCase());
+      if (filters.city) {
+        if (!job.location.toLowerCase().includes(filters.city.toLowerCase())) {
+          return false;
+        }
+      }
 
-      return matchesSearch && matchesCity;
+
+      const tags = job.tags.map((t) => t.toLowerCase());
+
+      if (filters.fullTime && !tags.includes('full-time')) return false;
+      if (filters.remote && !tags.includes('remote')) return false;
+      if (filters.junior && !tags.includes('junior')) return false;
+      if (filters.senior && !tags.includes('senior')) return false;
+
+      return true;
     });
   }
 }

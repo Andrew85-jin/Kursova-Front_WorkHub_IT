@@ -1,40 +1,118 @@
-<app-search-bar (searchChange)="onSearch($event)"></app-search-bar>
+<!--<app-search-bar (searchChange)="onSearch($event)"></app-search-bar>-->
+<section class="hero-section">
 
-<section class="categories">
+  <div class="hero-blur blur-1"></div>
+  <div class="hero-blur blur-2"></div>
+
   <div class="container">
-    <h2 class="category">Категорії</h2>
 
-    <div class="category-list">
-      @for (category of categories; track category.title){
-        <app-category-card
-          [icon]="category.icon"
-          [title]="category.title"
-          [vacancies]="category.vacancies">
-        </app-category-card>
-      }
+    <div class="hero-content">
+
+      <div class="hero-panel">
+
+        <h1>
+          WorkHub IT
+        </h1>
+
+        <p>
+          Платформа для пошуку роботи в IT.
+          Frontend, Backend, DevOps, Mobile та UI/UX вакансії.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            routerLink="/jobs"
+            class="btn-primary">
+            Знайти вакансії
+          </a>
+
+          <a
+            routerLink="/companies"
+            class="btn-secondary">
+            Компанії
+          </a>
+
+        </div>
+
+        <div class="tech-tags">
+
+          <span>Angular</span>
+          <span>React</span>
+          <span>NestJS</span>
+          <span>Java</span>
+          <span>Python</span>
+          <span>Docker</span>
+
+        </div>
+
+        <div class="city-tags">
+
+          <span>Київ</span>
+          <span>Львів</span>
+          <span>Черкаси</span>
+          <span>Одеса</span>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
-  <div class="btn-container">
-    <a routerLink="/categories" class="btn-more">Всі категорії</a>
-  </div>
 </section>
+<section class="stats-section">
 
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>1200+</h3>
+        <p>Вакансій</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>350+</h3>
+        <p>Компаній</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>15k+</h3>
+        <p>Кандидатів</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>98%</h3>
+        <p>Remote вакансій</p>
+      </div>
+      <p class="stats-disclaimer">
+        * Дані наведено в демонстраційних цілях
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 <div class="jobs-container">
   <section class="jobs">
     <div class="container">
       <h2 class="Vacancy">Вакансії</h2>
 
       <div class="jobs-list">
-        @for (job of filterJobs; track job.id) {
+        @for (job of filterJobs.slice(0, 3); track job.id) {
           <app-job-card
             [id]="job.id"
             [title]="job.title"
             [company]="job.company"
             [salary]="job.salary"
             [location]="job.location"
-            [experience]="job.experience">
+            [experience]="job.experience"
+            [skills]="job.skills"
+            [tags]="job.tags"
+          >
           </app-job-card>
         }
       </div>

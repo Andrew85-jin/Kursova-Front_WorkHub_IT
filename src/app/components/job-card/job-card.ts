@@ -16,4 +16,6 @@ export class JobCard {
   @Input() salary!: string;
   @Input() location!: string;
   @Input() experience!: string;
+  @Input() skills: string[] = [];
+  @Input() tags: string[] = [];
 }

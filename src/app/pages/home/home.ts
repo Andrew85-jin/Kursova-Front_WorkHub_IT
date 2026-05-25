@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
 import { JobCard } from '../../components/job-card/job-card';
-import { CategoryCard } from '../../components/category-card/category-card';
 import { SearchBar } from '../../components/search-bar/search-bar';
 import { RouterLink } from '@angular/router';
 import { jobs } from '../../shared/data/jobs';
-import { categories } from '../../shared/data/category';
 
 @Component({
   selector: 'app-home',
-  imports: [JobCard, SearchBar, CategoryCard, RouterLink],
+  imports: [JobCard, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  jobs = jobs
+  jobs = jobs;
 
-  categories = categories
 
   filterJobs = [...this.jobs];
 

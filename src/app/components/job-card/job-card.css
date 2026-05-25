@@ -23,13 +23,13 @@
 
 .job-company {
   color: #6b7280;
-
   margin-bottom: 16px;
+  font-size: 18px;
 }
 
 .job-meta {
   display: flex;
-
+  font-size: 18px;
   gap: 16px;
 
   color: #6b7280;
@@ -43,4 +43,42 @@
   font-weight: bold;
 
   font-size: 20px;
+}
+
+.tags-container{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.skill {
+  background: #eff6ff;
+  color: #2e2e7a;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.tag {
+  background: #e4ffe0;
+  color: #298840;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 500;
 }

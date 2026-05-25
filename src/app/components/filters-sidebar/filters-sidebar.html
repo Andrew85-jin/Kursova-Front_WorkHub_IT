@@ -1,59 +1,63 @@
 <aside class="sidebar" [class.collapsed]="isCollapsed">
-  <div class="sidebar-header">
-    <h2 *ngIf="!isCollapsed">Фільтри</h2>
-    <button class="toggle-btn" (click)="toggleSidebar()" type="button">
-      <span *ngIf="isCollapsed">✕</span>
-      <span *ngIf="isCollapsed">☰</span>
-    </button>
-  </div>
+  <button class="toggle-btn" (click)="toggleSidebar()" type="button">
+    @if (isCollapsed) {
+      <span>☰</span>
+    } @else {
+      <span>✕</span>
+    }
+  </button>
 
-  <div class="sidebar-content" *ngIf="!isCollapsed">
-    <div class="filter-group">
-      <label>Пошук</label>
-      <input
-        type="text"
-        [(ngModel)]="search"
-        (keyup.enter)="applyFilters()"
-        placeholder="Frontend..."
-      />
+  @if (!isCollapsed) {
+    <div class="sidebar-content">
+      <h2>Фільтри</h2>
+
+      <div class="filter-group">
+        <label>Пошук</label>
+        <input
+          type="text"
+          [(ngModel)]="search"
+          (keyup.enter)="applyFilters()"
+          placeholder="Frontend..."
+        />
+      </div>
+
+      <div class="filter-group">
+        <label>Місто</label>
+        <input
+          type="text"
+          [(ngModel)]="city"
+          (keyup.enter)="applyFilters()"
+          placeholder="Київ"
+        />
+      </div>
+
+      <div class="filter-group">
+        <h3>Тип роботи</h3>
+        <label>
+          <input type="checkbox" [(ngModel)]="fullTime" />
+          Full-time
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="remote" />
+          Remote
+        </label>
+      </div>
+
+      <div class="filter-group">
+        <h3>Досвід</h3>
+        <label>
+          <input type="checkbox" [(ngModel)]="junior" />
+          Junior
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="senior" />
+          Senior
+        </label>
+      </div>
+
+      <button (click)="applyFilters()">
+        Застосувати
+      </button>
     </div>
-
-    <div class="filter-group">
-      <label>Місто</label>
-      <input
-        type="text"
-        [(ngModel)]="city"
-        (keyup.enter)="applyFilters()"
-        placeholder="Київ"
-      />
-    </div>
-
-    <div class="filter-group">
-      <h3>Тип роботи</h3>
-      <label>
-        <input type="checkbox" [(ngModel)]="fullTime" />
-        Full-time
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="remote" />
-        Remote
-      </label>
-    </div>
-
-    <div class="filter-group">
-      <h3>Досвід</h3>
-      <label>
-        <input type="checkbox" [(ngModel)]="junior" />
-        Junior
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="senior" />
-        Senior
-      </label>
-    </div>
-
-    <button (click)="applyFilters()">
-      Застосувати
-    </button>
-  </div>
+  }
 </aside>

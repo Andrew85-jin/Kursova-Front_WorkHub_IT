@@ -8,6 +8,7 @@ export const jobs = [
     experience: '3+ роки',
     description: 'Шукаємо Frontend Developer для роботи з Angular.',
     skills: ['Angular', 'TypeScript', 'RxJS'],
+    tags: ['Full-Time', 'Senior'],
   },
 
   {
@@ -19,6 +20,7 @@ export const jobs = [
     experience: '2+ роки',
     description: 'Потрібен дизайнер для створення сучасних інтерфейсів.',
     skills: ['Figma', 'Photoshop', 'UI/UX'],
+    tags: ['Remote', 'Junior'],
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const jobs = [
     experience: '2+ роки',
     description: 'Потрібен дизайнер для створення сучасних інтерфейсів.',
     skills: ['Figma', 'Photoshop', 'UI/UX'],
+    tags: ['Remote', 'Junior'],
   },
 ];
 

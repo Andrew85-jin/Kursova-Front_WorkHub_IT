@@ -4,10 +4,22 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #f5f7fa;
+  font-family: Arial, sans-serif;
+}
+
 
 app-root {
   display: block;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .app-wrapper {
@@ -17,17 +29,18 @@ app-root {
   flex-direction: column;
 }
 
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #f5f7fa;
-  font-family: Arial, sans-serif;
+.main-content {
+  flex: 1;
 }
+
 .container {
   max-width: 1200px;
+
   margin: 0 auto;
+
   padding: 0 24px;
 }
 
-
+body.has-fixed-header{
+  padding-top: 115px;
+}
