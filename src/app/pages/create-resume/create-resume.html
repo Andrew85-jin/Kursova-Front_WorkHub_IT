@@ -1,0 +1,66 @@
+<section class="resume-page">
+  <div class="container">
+
+    <div class="resume-header">
+      <h1>Створення резюме</h1>
+      <p>Заповни основну інформацію про себе для майбутніх роботодавців.</p>
+    </div>
+
+    <form class="resume-form" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>ПІБ</label>
+          <input type="text" [(ngModel)]="fullName" name="fullName" required>
+        </div>
+
+        <div class="form-group">
+          <label>Бажана посада</label>
+          <input type="text" [(ngModel)]="position" name="position" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Місто</label>
+          <input type="text" [(ngModel)]="city" name="city">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="text" [(ngModel)]="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label>Досвід роботи</label>
+        <textarea [(ngModel)]="experience" name="experience"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Навички</label>
+        <input
+          type="text"
+          [(ngModel)]="skills"
+          name="skills"
+          placeholder="Angular, TypeScript, HTML, CSS">
+      </div>
+
+      <div class="form-group">
+        <label>Про себе</label>
+        <textarea [(ngModel)]="about" name="about"></textarea>
+      </div>
+
+      <button class="submit-btn" type="submit">
+        Створити резюме
+      </button>
+
+    </form>
+
+  </div>
+</section>

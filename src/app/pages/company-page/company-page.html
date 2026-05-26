@@ -6,6 +6,7 @@
 
       <div class="company-header">
 
+
         <div class="company-logo">
           {{ company.logo }}
         </div>
@@ -26,6 +27,25 @@
 
           </div>
 
+        </div>
+
+      </div>
+
+      <div class="company-stats">
+
+        <div>
+          <strong>{{ company.employees }}</strong>
+          <span>Працівників</span>
+        </div>
+
+        <div>
+          <strong>{{ companyJobs.length }}</strong>
+          <span>Вакансій</span>
+        </div>
+
+        <div>
+          <strong>{{ company.location }}</strong>
+          <span>Локація</span>
         </div>
 
       </div>

@@ -1,0 +1,57 @@
+<section class="profile-page">
+  <div class="container">
+
+    <div class="profile-header">
+
+      <div class="avatar">
+        {{ user.name[0] }}
+      </div>
+
+      <div>
+        <h1>{{ user.name }}</h1>
+        <p>{{ user.position }}</p>
+
+        <div class="profile-meta">
+          <span>{{ user.email }}</span>
+          <span>{{ user.city }}</span>
+          <span>{{ user.role }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="profile-stats">
+
+      <div class="stat-card">
+        <h2>{{ savedJobs }}</h2>
+        <p>Збережені вакансії</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>{{ applications }}</h2>
+        <p>Відгуки</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>1</h2>
+        <p>Резюме</p>
+      </div>
+
+    </div>
+
+    <div class="profile-actions">
+
+      <a routerLink="/create-resume" class="action-card">
+        <h2>Створити / редагувати резюме</h2>
+        <p>Додайте досвід, навички та контактну інформацію.</p>
+      </a>
+
+      <a routerLink="/jobs" class="action-card">
+        <h2>Переглянути вакансії</h2>
+        <p>Поверніться до пошуку актуальних IT-вакансій.</p>
+      </a>
+
+    </div>
+
+  </div>
+</section>

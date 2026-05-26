@@ -1,0 +1,94 @@
+.employer-page {
+  padding: 70px 0;
+}
+
+.employer-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.employer-hero h1 {
+  font-size: 58px;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.employer-hero p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.employer-actions {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 15px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: .25s ease;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+}
+
+.btn-secondary:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+
+.employer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.employer-card,
+.employer-note {
+  background: white;
+  border-radius: 24px;
+  padding: 34px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.employer-card h2,
+.employer-note h2 {
+  font-size: 28px;
+  color: #1e293b;
+  margin-bottom: 14px;
+}
+
+.employer-card p,
+.employer-note p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.employer-note {
+  text-align: center;
+}

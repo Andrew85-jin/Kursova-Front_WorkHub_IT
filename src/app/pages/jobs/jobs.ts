@@ -48,6 +48,15 @@ export class Jobs {
       if (filters.remote && !tags.includes('remote')) return false;
       if (filters.junior && !tags.includes('junior')) return false;
       if (filters.senior && !tags.includes('senior')) return false;
+      const skills = job.skills.map((s) => s.toLowerCase());
+
+      if (filters.angular && !skills.includes('angular')) return false;
+      if (filters.react && !skills.includes('react')) return false;
+      if (filters.node && !skills.includes('node.js')) return false;
+      if (filters.nestjs && !skills.includes('nestjs')) return false;
+      if (filters.java && !skills.includes('java')) return false;
+      if (filters.python && !skills.includes('python')) return false;
+      if (filters.docker && !skills.includes('docker')) return false;
 
       return true;
     });

@@ -1,0 +1,70 @@
+.contacts-page {
+  padding: 70px 0;
+}
+
+.contacts-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.contacts-hero h1 {
+  font-size: 58px;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.contacts-hero p {
+  max-width: 850px;
+  margin: 0 auto;
+
+  font-size: 22px;
+  line-height: 1.7;
+
+  color: #64748b;
+}
+
+.contacts-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+
+  margin-bottom: 40px;
+}
+
+.contact-card,
+.contact-about {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 34px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.05);
+}
+
+.contact-card h2,
+.contact-about h2 {
+  font-size: 28px;
+
+  color: #1e293b;
+
+  margin-bottom: 14px;
+}
+
+.contact-card p,
+.contact-about p {
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #64748b;
+}
+
+.contact-about {
+  text-align: center;
+}

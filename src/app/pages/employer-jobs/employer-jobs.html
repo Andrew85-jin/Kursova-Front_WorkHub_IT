@@ -1,0 +1,67 @@
+<section class="employer-jobs-page">
+  <div class="container">
+
+    <div class="page-header">
+      <div>
+        <h1>Мої вакансії</h1>
+        <p>
+          Керуйте вакансіями компанії {{ companyName }}.
+        </p>
+      </div>
+
+      <a routerLink="/create-job" class="create-btn">
+        Створити вакансію
+      </a>
+    </div>
+
+    <div class="jobs-table">
+
+      <div class="table-header">
+        <span>Вакансія</span>
+        <span>Місто</span>
+        <span>Статус</span>
+        <span>Відгуки</span>
+        <span>Дії</span>
+      </div>
+
+      @for (job of employerJobs; track job.id) {
+
+        <div class="table-row">
+
+          <div class="job-main">
+            <h3>{{ job.title }}</h3>
+            <p>{{ job.salary }}</p>
+          </div>
+
+          <div>{{ job.location }}</div>
+
+          <div>
+            <span
+              class="status"
+              [class.draft]="job.status === 'Чернетка'">
+              {{ job.status }}
+            </span>
+          </div>
+
+          <div>
+            {{ job.applications }}
+          </div>
+
+          <div class="actions">
+            <a [routerLink]="['/jobs', job.id]">
+              Перегляд
+            </a>
+
+            <button type="button">
+              Редагувати
+            </button>
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+</section>

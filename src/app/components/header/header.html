@@ -6,9 +6,9 @@
     <div class="container">
       <div>📍 Україна</div>
       <div class="top-links">
-        <a href="#">Для роботодавців</a>
-        <a href="#">Допомога</a>
-        <a href="#">УКР</a>
+        <a routerLink="/employer">Для роботодавців</a>
+        <a routerLink="/help">Допомога</a>
+        <a routerLink="#">УКР</a>
       </div>
     </div>
   </div>
@@ -16,19 +16,19 @@
     <div class="container nav-content">
 
       <div class="logo">
-        <a href="/"> Work<span>Hub IT</span></a>
+        <a routerLink="/"> Work<span>Hub IT</span></a>
       </div>
 
       <ul class="nav-links">
-        <li><a href="/jobs">Вакансії</a></li>
-        <li><a href="/companies">Компанії</a></li>
-        <li><a href="#">Резюме</a></li>
-        <li><a href="#">Про нас</a></li>
+        <li><a routerLink="/jobs">Вакансії</a></li>
+        <li><a routerLink="/companies">Компанії</a></li>
+        <li><a routerLink="/create-resume">Резюме</a></li>
+        <li><a routerLink="/about">Про нас</a></li>
       </ul>
 
       <div class="auth-buttons">
-        <button class="btn btn-outline">Увійти</button>
-        <button class="btn btn-primary">Розмістити вакансію</button>
+        <a routerLink="/login" class="btn btn-outline">Увійти</a>
+        <a routerLink="/create-job" class="btn btn-primary">Розмістити вакансію</a>
       </div>
 
     </div>

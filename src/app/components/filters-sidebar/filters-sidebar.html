@@ -1,18 +1,26 @@
+
+<button class="toggle-btn"
+        [class.collapsed]="isCollapsed"
+        (click)="toggleSidebar()"
+        type="button">
+  @if (isCollapsed) {
+    <span>☰</span>
+  } @else {
+    <span>✕</span>
+  }
+</button>
+
 <aside class="sidebar" [class.collapsed]="isCollapsed">
-  <button class="toggle-btn" (click)="toggleSidebar()" type="button">
-    @if (isCollapsed) {
-      <span>☰</span>
-    } @else {
-      <span>✕</span>
-    }
-  </button>
 
   @if (!isCollapsed) {
+
     <div class="sidebar-content">
+
       <h2>Фільтри</h2>
 
       <div class="filter-group">
         <label>Пошук</label>
+
         <input
           type="text"
           [(ngModel)]="search"
@@ -23,6 +31,7 @@
 
       <div class="filter-group">
         <label>Місто</label>
+
         <input
           type="text"
           [(ngModel)]="city"
@@ -33,10 +42,12 @@
 
       <div class="filter-group">
         <h3>Тип роботи</h3>
+
         <label>
           <input type="checkbox" [(ngModel)]="fullTime" />
           Full-time
         </label>
+
         <label>
           <input type="checkbox" [(ngModel)]="remote" />
           Remote
@@ -45,19 +56,78 @@
 
       <div class="filter-group">
         <h3>Досвід</h3>
+
         <label>
           <input type="checkbox" [(ngModel)]="junior" />
           Junior
         </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="middle" />
+          Middle
+        </label>
+
         <label>
           <input type="checkbox" [(ngModel)]="senior" />
           Senior
         </label>
       </div>
 
-      <button (click)="applyFilters()">
+      <div class="filter-group">
+        <h3>Технології</h3>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="angular" />
+          Angular
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="react" />
+          React
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="node" />
+          Node.js
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="nestjs" />
+          NestJS
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="java" />
+          Java
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="python" />
+          Python
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="docker" />
+          Docker
+        </label>
+      </div>
+
+      <button
+        class="apply-btn"
+        type="button"
+        (click)="applyFilters()">
         Застосувати
       </button>
+
+      <button
+        class="reset-btn"
+        type="button"
+        (click)="resetFilters()">
+        Очистити
+      </button>
+
     </div>
+
   }
+
 </aside>

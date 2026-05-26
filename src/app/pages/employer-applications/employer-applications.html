@@ -1,0 +1,56 @@
+<section class="applications-page">
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Відгуки кандидатів</h1>
+      <p>
+        Переглядайте кандидатів, які відгукнулися на вакансії компанії.
+      </p>
+    </div>
+
+    <div class="applications-list">
+
+      @for (application of applications; track application.id) {
+
+        <div class="application-card">
+
+          <div class="candidate-avatar">
+            {{ application.candidateName[0] }}
+          </div>
+
+          <div class="candidate-info">
+
+            <h2>{{ application.candidateName }}</h2>
+
+            <p class="position">
+              {{ application.position }}
+            </p>
+
+            <div class="candidate-meta">
+              <span>{{ application.email }}</span>
+              <span>{{ application.experience }}</span>
+            </div>
+
+          </div>
+
+          <div class="application-side">
+
+            <span class="status">
+              {{ application.status }}
+            </span>
+
+            <div class="actions">
+              <button type="button">Переглянути</button>
+              <button type="button" class="secondary">Відхилити</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+</section>
