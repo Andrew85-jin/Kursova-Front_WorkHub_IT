@@ -45,6 +45,12 @@
         }
       </p>
 
+      @if (errorMessage) {
+        <p class="error">
+          {{ errorMessage }}
+        </p>
+      }
+
       <div class="auth-switch">
         <button
           type="button"

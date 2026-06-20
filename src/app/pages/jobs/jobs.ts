@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { SearchBar } from '../../components/search-bar/search-bar';
 import { JobCard } from '../../components/job-card/job-card';
-import { FiltersSidebar } from '../../components/filters-sidebar/filters-sidebar';
-import { jobs } from '../../shared/data/jobs';
+import { FiltersSidebar, JobFilters } from '../../components/filters-sidebar/filters-sidebar';
+import { JobsService, Job } from '../../shared/services/jobs';
 
 @Component({
   selector: 'app-jobs',
@@ -11,10 +12,34 @@ import { jobs } from '../../shared/data/jobs';
   templateUrl: './jobs.html',
   styleUrl: './jobs.css',
 })
-export class Jobs {
-  jobs = jobs;
+export class Jobs implements OnInit {
+  jobs: Job[] = [];
+  filteredJobs: Job[] = [];
 
-  filteredJobs = [...this.jobs];
+  isLoading = false;
+  errorMessage = '';
+
+  constructor(private jobsService: JobsService) {}
+
+  ngOnInit() {
+    this.loadJobs();
+  }
+
+  loadJobs() {
+    this.isLoading = true;
+
+    this.jobsService.getJobs().subscribe({
+      next: (jobs) => {
+        this.jobs = jobs;
+        this.filteredJobs = jobs;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.errorMessage = 'Не вдалося завантажити вакансії';
+        this.isLoading = false;
+      },
+    });
+  }
 
   onSearch(query: { text: string; city: string }) {
     const text = query.text.toLowerCase();
@@ -26,12 +51,15 @@ export class Jobs {
         job.location.toLowerCase().includes(city),
     );
   }
-  applyFilters(filters: any) {
+
+  applyFilters(filters: JobFilters) {
     this.filteredJobs = this.jobs.filter((job) => {
       if (filters.search) {
         const search = filters.search.toLowerCase();
+
         const hasTitle = job.title.toLowerCase().includes(search);
         const hasCompany = job.company.toLowerCase().includes(search);
+
         if (!hasTitle && !hasCompany) return false;
       }
 
@@ -41,14 +69,15 @@ export class Jobs {
         }
       }
 
-
-      const tags = job.tags.map((t) => t.toLowerCase());
+      const tags = job.tags.map((tag) => tag.toLowerCase());
+      const skills = job.skills.map((skill) => skill.toLowerCase());
 
       if (filters.fullTime && !tags.includes('full-time')) return false;
       if (filters.remote && !tags.includes('remote')) return false;
+
       if (filters.junior && !tags.includes('junior')) return false;
+      if (filters.middle && !tags.includes('middle')) return false;
       if (filters.senior && !tags.includes('senior')) return false;
-      const skills = job.skills.map((s) => s.toLowerCase());
 
       if (filters.angular && !skills.includes('angular')) return false;
       if (filters.react && !skills.includes('react')) return false;

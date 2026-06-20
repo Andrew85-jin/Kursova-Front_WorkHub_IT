@@ -4,9 +4,14 @@
     <div class="page-header">
       <div>
         <h1>Мої вакансії</h1>
-        <p>
-          Керуйте вакансіями компанії {{ companyName }}.
-        </p>
+        @if (company) {
+
+          <p>
+            Керуйте вакансіями компанії
+            <strong>{{ company.name }}</strong>.
+          </p>
+
+        }
       </div>
 
       <a routerLink="/create-job" class="create-btn">
@@ -52,8 +57,15 @@
               Перегляд
             </a>
 
-            <button type="button">
+            <a [routerLink]="['/edit-job', job.id]">
               Редагувати
+            </a>
+
+            <button
+              type="button"
+              class="delete-btn"
+              (click)="deleteJob(job.id)">
+              Видалити
             </button>
           </div>
 

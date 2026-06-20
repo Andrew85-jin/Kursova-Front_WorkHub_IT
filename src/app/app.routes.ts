@@ -17,6 +17,9 @@ import { EmployerJobs } from './pages/employer-jobs/employer-jobs';
 import { EmployerApplications } from './pages/employer-applications/employer-applications';
 import { EmployerCompanyProfile } from './pages/employer-company-profile/employer-company-profile';
 import { Profile } from './pages/profile/profile';
+import { CreateCompany } from './pages/create-company/create-company';
+import { EmployerApplicationDetails } from './pages/employer-application-details/employer-application-details';
+import { EditJob } from './pages/edit-job/edit-job';
 
 export const routes: Routes = [
   {
@@ -104,5 +107,21 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: Profile,
+  },
+
+  {
+    path: 'create-company',
+    component: CreateCompany,
+  },
+
+  {
+    path: 'employer/applications/:id',
+    component: EmployerApplicationDetails,
+  },
+
+  {
+    path: 'edit-job/:id',
+    component:
+    EditJob,
   },
 ];

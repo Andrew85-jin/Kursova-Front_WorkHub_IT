@@ -1,0 +1,91 @@
+<section class="create-company-page">
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Створення компанії</h1>
+      <p>Заповніть інформацію про компанію, щоб розміщувати вакансії.</p>
+    </div>
+
+    <form class="company-form" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Назва компанії</label>
+          <input
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            required
+            placeholder="TechnoHub"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Місто</label>
+          <input
+            type="text"
+            [(ngModel)]="location"
+            name="location"
+            required
+            placeholder="Київ"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Кількість працівників</label>
+        <input
+          type="number"
+          [(ngModel)]="employees"
+          name="employees"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Сайт компанії</label>
+        <input
+          type="text"
+          [(ngModel)]="website"
+          name="website"
+          placeholder="https://example.com"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Опис компанії</label>
+        <textarea
+          [(ngModel)]="description"
+          name="description"
+          required
+          placeholder="Опишіть вашу компанію...">
+        </textarea>
+      </div>
+
+      @if (errorMessage) {
+        <p class="form-error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="form-success">{{ successMessage }}</p>
+      }
+
+      <button
+        class="submit-btn"
+        type="submit"
+        [disabled]="isLoading">
+
+        @if (!isLoading) {
+          <span>Створити компанію</span>
+        }
+
+        @if (isLoading) {
+          <span>Створення...</span>
+        }
+
+      </button>
+
+    </form>
+
+  </div>
+</section>

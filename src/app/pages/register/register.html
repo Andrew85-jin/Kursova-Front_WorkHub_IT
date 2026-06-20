@@ -90,39 +90,25 @@
 
       <form (ngSubmit)="onRegister()">
 
-        @if (mode === 'candidate') {
+        <div class="form-group">
 
-          <div class="form-group">
+          <label>
+            @if (mode === 'candidate') {
+              Ім'я
+            } @else {
+              Ім'я представника
+            }
+          </label>
 
-            <label>Ім'я</label>
+          <input
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            required
+            [placeholder]="mode === 'candidate' ? 'Andrii' : 'Andrew CEO'"
+          />
 
-            <input
-              type="text"
-              [(ngModel)]="name"
-              name="name"
-              required
-              placeholder="Andrii"
-            />
-
-          </div>
-
-        } @else {
-
-          <div class="form-group">
-
-            <label>Назва компанії</label>
-
-            <input
-              type="text"
-              [(ngModel)]="companyName"
-              name="companyName"
-              required
-              placeholder="TechnoHub"
-            />
-
-          </div>
-
-        }
+        </div>
 
         <div class="form-group">
 

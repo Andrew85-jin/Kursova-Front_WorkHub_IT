@@ -56,8 +56,32 @@
         <textarea [(ngModel)]="about" name="about"></textarea>
       </div>
 
-      <button class="submit-btn" type="submit">
-        Створити резюме
+      @if (errorMessage) {
+
+        <p class="form-error">
+          {{ errorMessage }}
+        </p>
+
+      }
+
+      @if (successMessage) {
+
+        <p class="form-success">
+          {{ successMessage }}
+        </p>
+
+      }
+
+      <button
+        type="submit"
+        [disabled]="isLoading" class="submit-btn">
+        @if (!isLoading) {
+          Створити резюме
+        }
+
+        @if (isLoading) {
+          Створення...
+        }
       </button>
 
     </form>

@@ -53,9 +53,41 @@
 
       <div class="sidebar">
 
-        <button class="apply-btn">
-          Відгукнутися
-        </button>
+        @if (authService.isCandidate()) {
+          <button
+            class="apply-btn"
+            type="button"
+            [disabled]="isApplying"
+            (click)="applyToJob()">
+
+            @if (!isApplying) {
+              Відгукнутися
+            }
+
+            @if (isApplying) {
+              Відправка...
+            }
+
+          </button>
+        }
+
+        @if (!authService.isLoggedIn()) {
+          <a routerLink="/login" class="apply-btn">
+            Увійти, щоб відгукнутися
+          </a>
+        }
+
+        @if (authService.isEmployer()) {
+          <p class="info-message">
+            Роботодавці не можуть відгукуватися на вакансії.
+          </p>
+        }
+
+        @if (applyMessage) {
+          <p class="apply-message">
+            {{ applyMessage }}
+          </p>
+        }
 
       </div>
 

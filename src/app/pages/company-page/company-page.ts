@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { companies } from '../../shared/data/companies';
-import { jobs } from '../../shared/data/jobs';
-
 import { JobCard } from '../../components/job-card/job-card';
+import { CompaniesService, Company } from '../../shared/services/companies';
+import { Job } from '../../shared/services/jobs';
 
 @Component({
   selector: 'app-company-page',
@@ -13,12 +12,33 @@ import { JobCard } from '../../components/job-card/job-card';
   templateUrl: './company-page.html',
   styleUrl: './company-page.css',
 })
-export class CompanyPage {
-  route = inject(ActivatedRoute);
+export class CompanyPage implements OnInit {
+  company?: Company;
+  companyJobs: Job[] = [];
 
-  companyId = Number(this.route.snapshot.paramMap.get('id'));
+  isLoading = false;
+  errorMessage = '';
 
-  company = companies.find((c) => c.id === this.companyId);
+  constructor(
+    private route: ActivatedRoute,
+    private companiesService: CompaniesService,
+  ) {}
 
-  companyJobs = jobs.filter((job) => job.company === this.company?.name);
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.isLoading = true;
+
+    this.companiesService.getCompany(id).subscribe({
+      next: (company) => {
+        this.company = company;
+        this.companyJobs = company.jobs ?? [];
+        this.isLoading = false;
+      },
+      error: () => {
+        this.errorMessage = 'Компанію не знайдено';
+        this.isLoading = false;
+      },
+    });
+  }
 }

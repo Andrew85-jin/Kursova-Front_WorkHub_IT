@@ -10,15 +10,17 @@
         та керуйте сторінкою компанії у WorkHub IT.
       </p>
 
-      <div class="employer-actions">
-        <a routerLink="/register" class="btn-primary">
-          Створити акаунт роботодавця
-        </a>
+      @if (!authService.isEmployer()) {
+        <div class="employer-actions">
+          <a routerLink="/register" class="btn-primary">
+            Створити акаунт роботодавця
+          </a>
 
-        <a routerLink="/login" class="btn-secondary">
-          Увійти як роботодавець
-        </a>
-      </div>
+          <a routerLink="/login" class="btn-secondary">
+            Увійти як роботодавець
+          </a>
+        </div>
+      }
     </div>
 
     <div class="employer-grid">

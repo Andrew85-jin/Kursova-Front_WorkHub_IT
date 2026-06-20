@@ -1,98 +1,143 @@
-<section class="company-profile-page">
-  <div class="container">
+@if (company; as companyData) {
 
-    <div class="page-header">
-      <h1>Профіль компанії</h1>
-      <p>
-        Редагуйте інформацію про компанію, яка буде відображатися кандидатам.
-      </p>
-    </div>
+  <section class="company-profile-page">
 
-    <div class="profile-layout">
+    <div class="container">
 
-      <div class="company-preview">
-        <div class="preview-logo">
-          {{ logo }}
-        </div>
+      <div class="page-header">
 
-        <h2>{{ companyName }}</h2>
+        <h1>Профіль компанії</h1>
 
-        <p>{{ description }}</p>
+        <p>
+          Редагуйте інформацію про компанію, яка буде
+          відображатися кандидатам.
+        </p>
 
-        <div class="preview-meta">
-          <span>{{ location }}</span>
-          <span>{{ employees }} працівників</span>
-        </div>
       </div>
 
-      <form class="company-form" (ngSubmit)="onSave()">
+      <div class="profile-layout">
 
-        <div class="form-row">
+        <div class="company-preview">
+
+          <div class="preview-logo">
+            {{ companyData.logo }}
+          </div>
+
+          <h2>{{ companyData.name }}</h2>
+
+          <p>{{ companyData.description }}</p>
+
+          <div class="preview-meta">
+
+            <span>{{ companyData.location }}</span>
+
+            <span>
+              {{ companyData.employees }} працівників
+            </span>
+
+          </div>
+
+        </div>
+
+        <form
+          class="company-form"
+          (ngSubmit)="onSave()">
+
+          <div class="form-row">
+
+            <div class="form-group">
+
+              <label>Назва компанії</label>
+
+              <input
+                type="text"
+                [(ngModel)]="companyData.name"
+                name="companyName"
+                required
+              />
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Логотип / ініціали</label>
+
+              <input
+                type="text"
+                [(ngModel)]="companyData.logo"
+                name="logo"
+                maxlength="3"
+              />
+
+            </div>
+
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group">
+
+              <label>Місто</label>
+
+              <input
+                type="text"
+                [(ngModel)]="companyData.location"
+                name="location"
+              />
+
+            </div>
+
+            <div class="form-group">
+
+              <label>Кількість працівників</label>
+
+              <input
+                type="number"
+                [(ngModel)]="companyData.employees"
+                name="employees"
+              />
+
+            </div>
+
+          </div>
+
           <div class="form-group">
-            <label>Назва компанії</label>
+
+            <label>Сайт компанії</label>
+
             <input
               type="text"
-              [(ngModel)]="companyName"
-              name="companyName"
-              required
+              [(ngModel)]="companyData.website"
+              name="website"
             />
+
           </div>
 
           <div class="form-group">
-            <label>Логотип / ініціали</label>
-            <input
-              type="text"
-              [(ngModel)]="logo"
-              name="logo"
-              maxlength="3"
-            />
-          </div>
-        </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>Місто</label>
-            <input
-              type="text"
-              [(ngModel)]="location"
-              name="location"
-            />
+            <label>Опис компанії</label>
+
+            <textarea
+              [(ngModel)]="companyData.description"
+              name="description">
+            </textarea>
+
           </div>
 
-          <div class="form-group">
-            <label>Кількість працівників</label>
-            <input
-              type="number"
-              [(ngModel)]="employees"
-              name="employees"
-            />
-          </div>
-        </div>
+          <button
+            class="save-btn"
+            type="submit">
 
-        <div class="form-group">
-          <label>Сайт компанії</label>
-          <input
-            type="text"
-            [(ngModel)]="website"
-            name="website"
-          />
-        </div>
+            Зберегти зміни
 
-        <div class="form-group">
-          <label>Опис компанії</label>
-          <textarea
-            [(ngModel)]="description"
-            name="description">
-          </textarea>
-        </div>
+          </button>
 
-        <button class="save-btn" type="submit">
-          Зберегти зміни
-        </button>
+        </form>
 
-      </form>
+      </div>
 
     </div>
 
-  </div>
-</section>
+  </section>
+
+}

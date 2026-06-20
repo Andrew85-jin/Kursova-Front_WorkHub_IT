@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { jobs } from '../../shared/data/jobs';
+
+import { CompaniesService, Company } from '../../shared/services/companies';
+import { JobsService } from '../../shared/services/jobs';
+import { Job } from '../../shared/services/jobs';
 
 @Component({
   selector: 'app-employer-jobs',
@@ -9,14 +12,68 @@ import { jobs } from '../../shared/data/jobs';
   templateUrl: './employer-jobs.html',
   styleUrl: './employer-jobs.css',
 })
-export class EmployerJobs {
-  companyName = 'TechnoHub';
+export class EmployerJobs implements OnInit {
+  company?: Company;
 
-  employerJobs = jobs
-    .filter((job) => job.company === this.companyName)
-    .map((job, index) => ({
-      ...job,
-      status: index % 2 === 0 ? 'Активна' : 'Чернетка',
-      applications: index + 3,
-    }));
+  employerJobs: Array<
+    Job & {
+      statusLabel: string;
+      applications: number;
+    }
+  > = [];
+
+  isLoading = false;
+  errorMessage = '';
+
+  constructor(
+    private companiesService: CompaniesService,
+    private jobsService: JobsService,
+  ) {}
+
+  ngOnInit() {
+    this.loadCompanyJobs();
+  }
+
+  loadCompanyJobs() {
+    this.isLoading = true;
+
+    this.companiesService.getMyCompany().subscribe({
+      next: (company) => {
+        this.company = company;
+
+        this.employerJobs = (company.jobs ?? []).map((job, index) => ({
+          ...job,
+
+          statusLabel: job.status === 'active' ? 'Активна' : 'Чернетка',
+
+          applications: index + 3,
+        }));
+
+        this.isLoading = false;
+      },
+
+      error: () => {
+        this.errorMessage = 'Не вдалося завантажити вакансії';
+
+        this.isLoading = false;
+      },
+    });
+  }
+  deleteJob(id: number) {
+    const isConfirmed = confirm('Ви точно хочете видалити цю вакансію?');
+
+    if (!isConfirmed) {
+      return;
+    }
+
+    this.jobsService.deleteJob(id).subscribe({
+      next: () => {
+        this.employerJobs = this.employerJobs.filter((job) => job.id !== id);
+      },
+
+      error: () => {
+        this.errorMessage = 'Не вдалося видалити вакансію';
+      },
+    });
+  }
 }

@@ -3,10 +3,32 @@
 
     <div class="page-header">
       <h1>Відгуки кандидатів</h1>
-      <p>
-        Переглядайте кандидатів, які відгукнулися на вакансії компанії.
-      </p>
+
+      @if (company) {
+        <p>
+          Відгуки на вакансії компанії
+          <strong>{{ company.name }}</strong>.
+        </p>
+      }
     </div>
+
+    @if (isLoading) {
+      <p class="state-message">
+        Завантаження відгуків...
+      </p>
+    }
+
+    @if (errorMessage) {
+      <p class="state-message error">
+        {{ errorMessage }}
+      </p>
+    }
+
+    @if (!isLoading && applications.length === 0) {
+      <p class="empty-message">
+        Поки немає відгуків на вакансії.
+      </p>
+    }
 
     <div class="applications-list">
 
@@ -15,21 +37,27 @@
         <div class="application-card">
 
           <div class="candidate-avatar">
-            {{ application.candidateName[0] }}
+            {{ application.candidate?.name?.[0] || '?' }}
           </div>
 
           <div class="candidate-info">
 
-            <h2>{{ application.candidateName }}</h2>
+            <h2>
+              {{ application.candidate?.name || 'Кандидат' }}
+            </h2>
 
             <p class="position">
-              {{ application.position }}
+              {{ application.job?.title || 'Вакансія' }}
             </p>
 
             <div class="candidate-meta">
-              <span>{{ application.email }}</span>
-              <span>{{ application.experience }}</span>
+              <span>{{ application.candidate?.email }}</span>
+              <span>{{ application.createdAt }}</span>
             </div>
+
+            <p class="message">
+              {{ application.message }}
+            </p>
 
           </div>
 
@@ -40,8 +68,11 @@
             </span>
 
             <div class="actions">
-              <button type="button">Переглянути</button>
-              <button type="button" class="secondary">Відхилити</button>
+              <a
+                [routerLink]="['/employer/applications',application.id]"
+                class="view-btn">
+                Переглянути
+              </a>
             </div>
 
           </div>

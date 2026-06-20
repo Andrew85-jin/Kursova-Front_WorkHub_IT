@@ -1,34 +1,121 @@
-<script src="header.ts"></script>
-<header class="header"
-        [class.hidden]="!isVisible"
-        [class.home-page]="isHomePage">
+<header
+  class="header"
+  [class.hidden]="!isVisible"
+  [class.home-page]="isHomePage">
+
   <div class="header-top">
     <div class="container">
+
       <div>📍 Україна</div>
+
       <div class="top-links">
         <a routerLink="/employer">Для роботодавців</a>
         <a routerLink="/help">Допомога</a>
         <a routerLink="#">УКР</a>
       </div>
+
     </div>
   </div>
+
   <nav class="nav">
     <div class="container nav-content">
 
       <div class="logo">
-        <a routerLink="/"> Work<span>Hub IT</span></a>
+        <a routerLink="/">
+          Work<span>Hub IT</span>
+        </a>
       </div>
 
       <ul class="nav-links">
-        <li><a routerLink="/jobs">Вакансії</a></li>
-        <li><a routerLink="/companies">Компанії</a></li>
-        <li><a routerLink="/create-resume">Резюме</a></li>
-        <li><a routerLink="/about">Про нас</a></li>
+
+        <li>
+          <a routerLink="/jobs">Вакансії</a>
+        </li>
+
+        <li>
+          <a routerLink="/companies">Компанії</a>
+        </li>
+
+        @if (!authService.isEmployer()) {
+          <li>
+            <a routerLink="/create-resume">Резюме</a>
+          </li>
+        }
+
+        @if (authService.isEmployer()) {
+          <li>
+            <a routerLink="/employer/jobs">Мої вакансії</a>
+          </li>
+
+          <li>
+            <a routerLink="/employer/applications">Відгуки</a>
+          </li>
+        }
+
+        <li>
+          <a routerLink="/about">Про нас</a>
+        </li>
+
       </ul>
 
       <div class="auth-buttons">
-        <a routerLink="/login" class="btn btn-outline">Увійти</a>
-        <a routerLink="/create-job" class="btn btn-primary">Розмістити вакансію</a>
+
+        @if (!authService.isLoggedIn()) {
+
+          <a
+            routerLink="/login"
+            class="btn btn-outline">
+            Увійти
+          </a>
+
+          <a
+            routerLink="/register"
+            class="btn btn-primary">
+            Реєстрація
+          </a>
+
+        }
+
+        @if (authService.isCandidate()) {
+
+          <a
+            routerLink="/profile"
+            class="btn btn-outline">
+            Профіль
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="logout()">
+            Вийти
+          </button>
+
+        }
+
+        @if (authService.isEmployer()) {
+
+          <a
+            routerLink="/employer/company-profile"
+            class="btn btn-outline">
+            Профіль компанії
+          </a>
+
+          <a
+            routerLink="/create-job"
+            class="btn btn-primary">
+            Створити вакансію
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-outline"
+            (click)="logout()">
+            Вийти
+          </button>
+
+        }
+
       </div>
 
     </div>

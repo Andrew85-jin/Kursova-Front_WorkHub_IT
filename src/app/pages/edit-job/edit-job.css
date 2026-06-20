@@ -1,0 +1,111 @@
+.edit-job-page {
+  min-height: 100vh;
+  padding: 80px 0;
+  background:
+    radial-gradient(circle at top left, #2563eb16, transparent 30%),
+    linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 54px;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.page-header p {
+  font-size: 20px;
+  color: #64748b;
+}
+
+.job-form {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 26px;
+  padding: 40px;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #334155;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 14px;
+  border: 1px solid #dbeafe;
+  font-size: 17px;
+  outline: none;
+  transition: 0.25s ease;
+  background: white;
+}
+
+.form-group textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #2563eb;
+  color: white;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.form-success {
+  color: #16a34a;
+  font-size: 16px;
+  margin-bottom: 18px;
+}

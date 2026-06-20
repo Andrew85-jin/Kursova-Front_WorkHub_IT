@@ -1,37 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { CompaniesService, Company } from '../../shared/services/companies';
+
+import { ApplicationsService, Application } from '../../shared/services/applications';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-employer-applications',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './employer-applications.html',
   styleUrl: './employer-applications.css',
 })
-export class EmployerApplications {
-  applications = [
-    {
-      id: 1,
-      candidateName: 'Андрій Візітіу',
-      position: 'Frontend Developer',
-      email: 'andrii@example.com',
-      experience: '1+ рік',
-      status: 'Новий',
-    },
-    {
-      id: 2,
-      candidateName: 'Марія Коваль',
-      position: 'UI/UX Designer',
-      email: 'maria@example.com',
-      experience: '2+ роки',
-      status: 'Переглянуто',
-    },
-    {
-      id: 3,
-      candidateName: 'Олег Петренко',
-      position: 'Backend Developer',
-      email: 'oleg@example.com',
-      experience: '3+ роки',
-      status: 'Запрошено',
-    },
-  ];
+export class EmployerApplications implements OnInit {
+  company?: Company;
+  applications: Application[] = [];
+
+  isLoading = false;
+  errorMessage = '';
+
+  constructor(
+    private companiesService: CompaniesService,
+    private applicationsService: ApplicationsService,
+  ) {}
+
+  ngOnInit() {
+    this.loadApplications();
+  }
+
+  loadApplications() {
+    this.isLoading = true;
+
+    this.companiesService.getMyCompany().subscribe({
+      next: (company) => {
+        this.company = company;
+
+        const jobs = company.jobs ?? [];
+
+        if (jobs.length === 0) {
+          this.isLoading = false;
+          return;
+        }
+
+        jobs.forEach((job) => {
+          this.applicationsService.getApplicationsByJob(job.id).subscribe({
+            next: (applications) => {
+              this.applications = [...this.applications, ...applications];
+
+              this.isLoading = false;
+            },
+            error: () => {
+              this.errorMessage = 'Не вдалося завантажити відгуки';
+              this.isLoading = false;
+            },
+          });
+        });
+      },
+      error: () => {
+        this.errorMessage = 'Не вдалося завантажити компанію';
+        this.isLoading = false;
+      },
+    });
+  }
 }

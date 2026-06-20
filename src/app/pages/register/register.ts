@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
+import { AuthService } from '../../shared/services/auth';
 
 @Component({
   selector: 'app-register',
@@ -13,33 +15,50 @@ export class Register {
   mode: 'candidate' | 'employer' = 'candidate';
 
   name = '';
-  companyName = '';
-
   email = '';
   password = '';
   confirmPassword = '';
 
   errorMessage = '';
 
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
   setMode(mode: 'candidate' | 'employer') {
     this.mode = mode;
   }
 
   onRegister() {
+    this.errorMessage = '';
+
     if (this.password !== this.confirmPassword) {
       this.errorMessage = 'Паролі не співпадають';
-
       return;
     }
 
-    this.errorMessage = '';
+    this.authService
+      .register({
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        role: this.mode,
+      })
+      .subscribe({
+        next: (response) => {
+          this.authService.saveToken(response.accessToken);
+          this.authService.currentUser.set(response.user);
 
-    console.log('register:', {
-      role: this.mode,
-      name: this.name,
-      companyName: this.companyName,
-      email: this.email,
-      password: this.password,
-    });
+          if (response.user.role === 'employer') {
+            this.router.navigate(['/create-company']);
+          } else {
+            this.router.navigate(['/profile']);
+          }
+        },
+        error: () => {
+          this.errorMessage = 'Не вдалося зареєструватися';
+        },
+      });
   }
 }

@@ -112,3 +112,19 @@
 
   transform: translateY(-2px);
 }
+
+.form-error {
+  color: #dc2626;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+.form-success {
+  color: #16a34a;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

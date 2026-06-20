@@ -9,7 +9,17 @@
     </app-filters-sidebar>
 
     <div class="jobs-content">
+      @if (isLoading) {
+        <p class="state-message">Завантаження вакансій...</p>
+      }
 
+      @if (errorMessage) {
+        <p class="state-message error">{{ errorMessage }}</p>
+      }
+
+      @if (!isLoading && filteredJobs.length === 0) {
+        <p class="state-message">Вакансій не знайдено</p>
+      }
       <div class="jobs-list">
 
         @for (job of filteredJobs; track job.id) {

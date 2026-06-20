@@ -1,0 +1,78 @@
+<section class="edit-job-page">
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Редагування вакансії</h1>
+      <p>Оновіть інформацію про вакансію.</p>
+    </div>
+
+    <form class="job-form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label>Назва вакансії</label>
+        <input type="text" [(ngModel)]="title" name="title" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Зарплата</label>
+          <input type="text" [(ngModel)]="salary" name="salary" />
+        </div>
+
+        <div class="form-group">
+          <label>Місто</label>
+          <input type="text" [(ngModel)]="location" name="location" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Досвід</label>
+        <input type="text" [(ngModel)]="experience" name="experience" />
+      </div>
+
+      <div class="form-group">
+        <label>Опис вакансії</label>
+        <textarea [(ngModel)]="description" name="description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Навички через кому</label>
+        <input type="text" [(ngModel)]="skills" name="skills" />
+      </div>
+
+      <div class="form-group">
+        <label>Теги через кому</label>
+        <input type="text" [(ngModel)]="tags" name="tags" />
+      </div>
+
+      <div class="form-group">
+        <label>Статус</label>
+
+        <select [(ngModel)]="status" name="status">
+          <option value="active">Активна</option>
+          <option value="draft">Чернетка</option>
+        </select>
+      </div>
+
+      @if (errorMessage) {
+        <p class="form-error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="form-success">{{ successMessage }}</p>
+      }
+
+      <button class="submit-btn" type="submit" [disabled]="isLoading">
+        @if (!isLoading) {
+          Зберегти зміни
+        }
+
+        @if (isLoading) {
+          Збереження...
+        }
+      </button>
+
+    </form>
+
+  </div>
+</section>

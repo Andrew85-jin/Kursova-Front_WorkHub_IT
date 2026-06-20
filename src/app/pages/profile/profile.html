@@ -1,57 +1,105 @@
 <section class="profile-page">
   <div class="container">
 
-    <div class="profile-header">
+    @if (user) {
 
-      <div class="avatar">
-        {{ user.name[0] }}
-      </div>
+      <div class="profile-header">
 
-      <div>
-        <h1>{{ user.name }}</h1>
-        <p>{{ user.position }}</p>
-
-        <div class="profile-meta">
-          <span>{{ user.email }}</span>
-          <span>{{ user.city }}</span>
-          <span>{{ user.role }}</span>
+        <div class="avatar">
+          {{ user.email[0].toUpperCase() }}
         </div>
+
+        <div>
+          <h1>{{ user.name }}</h1>
+
+          <p>Кандидат</p>
+
+          <div class="profile-meta">
+            <span>{{ user.email }}</span>
+            <span>{{ user.role }}</span>
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      <div class="profile-stats">
 
-    <div class="profile-stats">
+        <div class="stat-card">
+          <h2>{{ resumes.length }}</h2>
+          <p>Резюме</p>
+        </div>
 
-      <div class="stat-card">
-        <h2>{{ savedJobs }}</h2>
-        <p>Збережені вакансії</p>
+        <div class="stat-card">
+          <h2>{{ applications.length }}</h2>
+          <p>Відгуки</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>0</h2>
+          <p>Збережені вакансії</p>
+        </div>
+
       </div>
 
-      <div class="stat-card">
-        <h2>{{ applications }}</h2>
-        <p>Відгуки</p>
+      <div class="profile-actions">
+
+        <a routerLink="/create-resume" class="action-card">
+          <h2>Створити / редагувати резюме</h2>
+          <p>
+            Додайте досвід, навички та контактну інформацію.
+          </p>
+        </a>
+
+        <a routerLink="/jobs" class="action-card">
+          <h2>Переглянути вакансії</h2>
+          <p>
+            Поверніться до пошуку актуальних IT-вакансій.
+          </p>
+        </a>
+
       </div>
 
-      <div class="stat-card">
-        <h2>1</h2>
-        <p>Резюме</p>
+      <div class="profile-section">
+
+        <h2>Мої резюме</h2>
+
+        @if (resumes.length === 0) {
+          <p class="empty-message">
+            У вас ще немає створених резюме.
+          </p>
+        }
+
+        @for (resume of resumes; track resume.id) {
+          <div class="info-card">
+            <h3>{{ resume.position }}</h3>
+            <p>{{ resume.fullName }}</p>
+            <p>{{ resume.city }}</p>
+          </div>
+        }
+
       </div>
 
-    </div>
+      <div class="profile-section">
 
-    <div class="profile-actions">
+        <h2>Мої відгуки</h2>
 
-      <a routerLink="/create-resume" class="action-card">
-        <h2>Створити / редагувати резюме</h2>
-        <p>Додайте досвід, навички та контактну інформацію.</p>
-      </a>
+        @if (applications.length === 0) {
+          <p class="empty-message">
+            Ви ще не відгукувались на вакансії.
+          </p>
+        }
 
-      <a routerLink="/jobs" class="action-card">
-        <h2>Переглянути вакансії</h2>
-        <p>Поверніться до пошуку актуальних IT-вакансій.</p>
-      </a>
+        @for (application of applications; track application.id) {
+          <div class="info-card">
+            <h3>Відгук #{{ application.id }}</h3>
+            <p>{{ application.message }}</p>
+            <span>{{ application.status }}</span>
+          </div>
+        }
 
-    </div>
+      </div>
+
+    }
 
   </div>
 </section>

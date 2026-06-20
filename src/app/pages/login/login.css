@@ -221,3 +221,9 @@
   color: #2563eb;
   box-shadow: 0 4px 10px rgba(0,0,0,.06);
 }
+
+.error {
+  color: #dc2626;
+  font-size: 15px;
+  margin-bottom: 18px;
+}

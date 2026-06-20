@@ -1,0 +1,96 @@
+<section class="application-details-page">
+  <div class="container">
+
+    @if (isLoading) {
+      <p>Завантаження...</p>
+    }
+
+    @if (errorMessage) {
+      <p>{{ errorMessage }}</p>
+    }
+
+    @if (application) {
+
+      <a routerLink="/employer/applications" class="back-link">
+        ← Назад до відгуків
+      </a>
+
+      <div class="details-card">
+
+        <h1>{{ application.candidate?.name }}</h1>
+
+        <p class="email">
+          {{ application.candidate?.email }}
+        </p>
+
+        <div class="section">
+          <h2>Вакансія</h2>
+          <p>{{ application.job?.title }}</p>
+        </div>
+
+        <div class="section">
+          <h2>Повідомлення кандидата</h2>
+          <p>{{ application.message }}</p>
+        </div>
+
+        <div class="section">
+          <h2>Резюме кандидата</h2>
+
+          @if (resumes.length === 0) {
+            <p>Кандидат ще не створив резюме.</p>
+          }
+
+          @for (resume of resumes; track resume.id) {
+            <div class="resume-card">
+              <h3>{{ resume.position }}</h3>
+
+              <p><strong>ПІБ:</strong> {{ resume.fullName }}</p>
+              <p><strong>Місто:</strong> {{ resume.city }}</p>
+              <p><strong>Email:</strong> {{ resume.email }}</p>
+              <p><strong>Телефон:</strong> {{ resume.phone }}</p>
+              <p><strong>Досвід:</strong> {{ resume.experience }}</p>
+              <p><strong>Навички:</strong> {{ resume.skills.join(', ') }}</p>
+              <p><strong>Про себе:</strong> {{ resume.about }}</p>
+            </div>
+          }
+        </div>
+
+        <div class="section">
+          <h2>Статус</h2>
+          <span class="status">
+            {{ application.status }}
+          </span>
+        </div>
+
+        <div class="actions">
+          <button
+            type="button"
+            (click)="acceptApplication()">
+
+            Прийняти
+
+          </button>
+
+          <button
+            type="button"
+            class="secondary"
+            (click)="rejectApplication()">
+
+            Відхилити
+
+          </button>
+
+          @if (statusMessage) {
+
+            <p class="status-message">
+              {{ statusMessage }}
+            </p>
+
+          }
+        </div>
+
+      </div>
+    }
+
+  </div>
+</section>

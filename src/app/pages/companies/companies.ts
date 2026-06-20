@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { companies } from '../../shared/data/companies';
+import { Component, OnInit } from '@angular/core';
 import { CompanyCard } from '../../components/company-card/company-card';
+import { CompaniesService, Company } from '../../shared/services/companies';
 
 @Component({
   selector: 'app-companies',
@@ -9,6 +9,16 @@ import { CompanyCard } from '../../components/company-card/company-card';
   templateUrl: './companies.html',
   styleUrl: './companies.css',
 })
-export class Companies {
-  companies = companies;
+export class Companies implements OnInit {
+  companies: Company[] = [];
+
+  constructor(private companiesService: CompaniesService) {}
+
+  ngOnInit() {
+    this.companiesService.getCompanies().subscribe({
+      next: (companies) => {
+        this.companies = companies;
+      },
+    });
+  }
 }
